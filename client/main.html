@@ -1,0 +1,47 @@
+<head>
+	<title>leaderboard</title>
+</head>
+
+<body>
+	<h1>Welcome to Meteor!</h1>
+
+	<!--{{> hello}} {{> info}}-->
+	{{> test}}
+</body>
+
+<template name="hello">
+	<button>Click Me</button>
+	<p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="info">
+	<h2>Learn Meteor!</h2>
+	<ul>
+		<li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+		<li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+		<li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+		<li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+	</ul>
+</template>
+
+<template name="test">
+	<div>
+		<label for="name">Enter your name:</label>
+		<input type="text" id="name" {{b "value: name"}}>
+		<input type="button" id="test_input" value="Test" {{b "click: test(this.value)"}}>
+		<div id="user" {{b "text: greet"}}></div>
+
+		<ul>
+			{{#each val}}
+			<li>{{this}}</li>
+			{{/each}}
+		</ul>
+
+		<input type="button" value="Show existing users" {{b "click: showUsers"}}>
+		<ol>
+			{{#each users}}
+			<li>{{this.name}}:{{this.score}}</li>
+			{{/each}}
+		</ol>
+	</div>
+</template>
