@@ -1,0 +1,38 @@
+import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
+import { HTTP } from 'meteor/http';
+
+import './main.html';
+
+Template.hello.onCreated(function helloOnCreated() {
+  // counter starts at 0
+  this.counter = new ReactiveVar(0);
+});
+
+Template.hello.helpers({
+  counter() {
+    return Template.instance().counter.get();
+  },
+});
+
+Template.hello.events({
+  'click button'(event, instance) {
+    // increment the counter when button is clicked
+    instance.counter.set(instance.counter.get() + 1);
+  },
+  'click #getFile'(event, instance) {
+    console.log("test");
+    event.target.href += '?text';
+    console.log(event.target.href);
+    HTTP.call(
+      "GET",
+      "http://localhost:3000/img",
+      {
+        name: 'test.png'
+      },
+      function(err, data){
+        console.log(err, data);
+      }
+    )
+  }
+});
